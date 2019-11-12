@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Cards 2019</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="js/cardjs.js"></script>
+
+    <!-- <script>
+        var cardList;
+        function updateUI(e) {
+            console.log(e.currentTarget + " was rolled over");
+            console.log(e.currentTarget.getAttribute('data-card-name'));
+            // custom attribute = data-card-name
+
+        }
+        window.onload = function () {
+            cardList = document.getElementsByClassName('card');
+            for (var i = 0; i < cardList.length; i++) {
+                cardList[i].addEventListener("mouseover", updateUI)
+            }
+        }
+    </script> -->
+    <style>
+        body, h2, p {
+            padding: 0;
+            margin: 0;
+        }
+
+        body{
+            background-image: url(images/city.png);
+        }
+
+        h2, p {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            user-select: none;
+            color: white;
+        }
+
+        h2 {
+            font-size: 12px;
+            text-align: center;
+
+        }
+
+
+        #deck {
+            display: grid;
+            justify-content: center;
+            align-content: center;
+            grid-column-gap: 20px;
+            grid-row-gap: 40px;
+            grid-template-columns: auto auto auto;
+            height: 100vh;
+        }
+
+        .card {
+            width: 160px;
+            height: 260px;
+            perspective: 1000px;
+        }
+
+        .flip {
+            transition: transform .6s;
+            transform-style: preserve-3d;
+            transform: rotateY(180deg);
+        }
+        
+       .flipReverse {
+            transition: transform .6s;
+            transform-style: preserve-3d;
+            transform: rotateY(360deg);
+        }
+
+        .card-front, .card-back {
+            backface-visibility: hidden;
+            transform: rotateX(0deg);
+            position: absolute;
+            top: 0;
+            background-repeat: no-repeat;
+            background-size: cover;
+            width: 160px;
+            height: 260px;
+            text-align: center;
+        }
+
+        p{position: fixed; left: 50%; top: 5%; transform: translate(-50%, -50%); font-size: 30px;}
+
+        .card-front img, .card-back img {
+            width: 160px;
+            height: 260px;
+        }
+
+        .card-back { transform: rotateY(180deg); }
+
+        .image-holder {
+            width: 50px;
+            height: 60px;
+        }
+
+        #winner{position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); display: none;}
+
+        #restart{display: none;}
+
+        button{position: fixed; left: 50%; bottom: 1%; transform: translate(-50%, -50%);}
+
+        #controls{ font-size: 12px; position: fixed; left: 50%; top: 10%; transform: translate(-50%, -50%);}
+
+        html{overflow: hidden;}
+
+    </style>
+</head>
+
+<body>
+
+    <p id = "controls">Player 1 controls: q, w, e | Player 2 controls: left, down, right</p>
+
+    <p id="score">0 | 0</p>
+    <p id="winner">fdksdksgbdsgh</p>
+
+    <div id="deck">
+        <div class="card" data-card-name="ryuji" id = "ryuji">
+            <div class="card-inner">
+                <div class="card-back">
+                    <div class="image-holder">
+                        <img src="images/ryuji.png">
+                    </div>
+                    <div class="card-name">
+                    </div>
+                </div>
+                <div class="card-front">
+                    <img src="images/jlrock.png">
+                </div>
+            </div>
+        </div>
+
+        <div class="card" id = "makoto">
+            <div class="card-inner">
+                <div class="card-back">
+                    <div class="image-holder">
+                        <img src="images/makoto.png">
+                    </div>
+                    <div class="card-name">
+                    </div>
+                </div>
+                <div class="card-front">
+                    <img src="images/jlpaper.png">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card" id = "ann">
+            <div class="card-inner">
+                <div class="card-back">
+                    <div class="image-holder">
+                        <img src="images/ann.png">
+                    </div>
+                    <div class="card-name">
+
+                    </div>
+                </div>
+                <div class="card-front">
+                    <img src="images/jlsci.png">
+                </div>
+            </div>
+        </div>
+
+        <p></p>
+
+
+        <div class="card" id = "yusuke">
+            <div class="card-inner">
+                <div class="card-back">
+                    <div class="image-holder">
+                        <img src="images/yusuke.png">
+                    </div>
+                    <div class="card-name">
+                    
+                    </div>
+                </div>
+                <div class="card-front">
+                    <img src="images/jrrock.png">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card" id = "futaba">
+            <div class="card-inner">
+                <div class="card-back">
+                    <div class="image-holder">
+                        <img src="images/futaba.png">
+                    </div>
+                    <div class="card-name">
+
+                    </div>
+                    
+                </div>
+                <div class="card-front">
+                        <img src="images/jrpaper.png">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card" id = "haru">
+            <div class="card-inner">
+                <div class="card-back">
+                    <div class="image-holder">
+                        <img src="images/haru.png">
+                    </div>
+                    <div class="card-name">
+
+                    </div>
+                </div>
+                    <div class="card-front">
+                        <img src="images/jrsci.png">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div>
+            <button type="button" id="restart" onclick="restartgame()">Restart</input>
+        </div>
+
+        <div id="feedback">
+            <p></p>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
